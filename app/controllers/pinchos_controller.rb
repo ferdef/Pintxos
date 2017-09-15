@@ -1,0 +1,2 @@
+class PinchosController < ApplicationController
+end

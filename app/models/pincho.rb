@@ -1,0 +1,2 @@
+class Pincho < ApplicationRecord
+end

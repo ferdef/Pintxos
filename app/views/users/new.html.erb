@@ -1,6 +1,6 @@
-<% @page_title = "Vecino | Alta" %>
+<% @page_title = "Participantes | Alta" %>
 <div class="Sign_Form">
-  <h1>Alta</h1>
+  <h1>Registrar un nuevo participante</h1>
   <%= form_for(:user, :url => {:controller => 'users', :action => 'create'}) do |f| %>
     <p> Usuario:</br> <%= f.text_field :username%> </p>
     <p> Nombre:</br> <%= f.text_field :name%> </p>

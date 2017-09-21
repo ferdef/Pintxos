@@ -1,18 +1,42 @@
 <% @page_title = "Participantes | Alta" %>
-<div class="Sign_Form">
-  <h1>Registrar un nuevo participante</h1>
-  <%= form_for(:user, :url => {:controller => 'users', :action => 'create'}) do |f| %>
-    <p> Usuario:</br> <%= f.text_field :username%> </p>
-    <p> Nombre:</br> <%= f.text_field :name%> </p>
-    <p> Password:</br> <%= f.password_field :password%></p>
-    <p> Confirma el Password:</br> <%= f.password_field :password_confirmation%> </p>
-    <%= f.submit :Signup %>
-  <% end %>
-  <% if @user.errors.any? %>
-    <ul class="Signup_Errors">
-    <% for message_error in @user.errors.full_messages %>
-      <li>* <%= message_error %></li>
+
+<header class="intro-header">
+  <div class="container">
+    <div class="intro-message">
+      <h1>Nuevo participante</h1>
+    </div>
+  </div>
+</header>
+
+<div class="section">
+  <div class="container">
+    <%= form_for(:user, 
+        :url => {:controller => 'users', :action => 'create'}, 
+        :html => {:class => "form-horizontal center"}) do |f| %>
+      <div class="form-group">
+        <%= f.label :username, "Usuario:", class: "control-label" %>
+        <%= f.text_field :username, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :name, "Nombre:", class: "control-label" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password, class: "control-label" %>
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation, class: "control-label" %>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+      </div>
+      <%= f.submit "Registrar", class: "btn btn-default btn-primary" %>
     <% end %>
-    </ul>
-  <% end %>
+    <% if @user.errors.any? %>
+      <ul class="Signup_Errors">
+      <% for message_error in @user.errors.full_messages %>
+        <li>* <%= message_error %></li>
+      <% end %>
+      </ul>
+    <% end %>
+  </div>
 </div>

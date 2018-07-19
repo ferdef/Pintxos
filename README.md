@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Pinchos Contest
 
-Things you may want to cover:
+* What can you do?
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- 2 roles: Participant and Admin
+- Admin can:
+  - Create a new contest. There can be only one contest at a time.
+  - Start the contest
+  - Move to next pincho to be voted
+  - End the contest
+- Participant can:
+  - Add your own pincho, with image and description
+  - Vote next pincho in line, once the contest has begun
+  - See results at the end

@@ -21,3 +21,6 @@
 .byebug_history
 .env
 Gemfile.lock
+
+# Ignore bin folder
+/bin

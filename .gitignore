@@ -24,3 +24,6 @@ Gemfile.lock
 
 # Ignore bin folder
 /bin
+
+# VSCode
+/.vscode

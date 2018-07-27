@@ -1,0 +1,27 @@
+<header class="intro-header">
+  <div class="container">
+    <div class="intro-message">
+      <h1>Usuarios</h1>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>Usuario</th>
+      <th>Nombre</th>
+    </tr>
+
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.username %></td>
+        <td><%= user.name %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="container" align="center">
+  <%= link_to 'Inicio', root_path, class: "btn btn-secondary btn-lg" %>
+</div>

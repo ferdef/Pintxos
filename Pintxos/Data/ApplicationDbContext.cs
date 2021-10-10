@@ -4,6 +4,8 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
+using Pintxos.Models;
+
 namespace Pintxos.Data
 {
     public class ApplicationDbContext : IdentityDbContext
@@ -12,5 +14,7 @@ namespace Pintxos.Data
             : base(options)
         {
         }
+
+        public DbSet<ContestModel> Contests { get; set; }
     }
 }

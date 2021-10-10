@@ -16,5 +16,6 @@ namespace Pintxos.Data
         }
 
         public DbSet<ContestModel> Contests { get; set; }
+        public DbSet<FamilyModel> Families { get; set; }
     }
 }

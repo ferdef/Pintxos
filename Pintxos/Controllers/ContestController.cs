@@ -24,5 +24,22 @@ namespace Pintxos.Controllers
 
             return View(model);
         }
+
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddContest(ContestModel newContest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var successful = await _pintxoService.AddContestAsync(newContest);
+            if (!successful)
+            {
+                return BadRequest("Could not add Contest");
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }

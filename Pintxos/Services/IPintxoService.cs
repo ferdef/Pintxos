@@ -5,7 +5,7 @@ namespace Pintxos.Services
 {
     public interface IPintxoService
     {
-        public Task<ContestModel[]> GetContestsAsync();
-
+        Task<ContestModel[]> GetContestsAsync();
+        Task<bool> AddContestAsync(ContestModel newContest);
     }
 }

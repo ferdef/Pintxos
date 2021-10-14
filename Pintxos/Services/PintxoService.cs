@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Pintxos.Data;
@@ -19,16 +20,16 @@ namespace Pintxos.Services
             var items = _context.Contests.ToArray();
 
             return items;
+        }
 
-            // ContestModel contest = new ContestModel()
-            // {
-            //     ContestDate = System.DateTime.Today
-            // };
+        public async Task<bool> AddContestAsync(ContestModel newContest)
+        {
+            newContest.Id = Guid.NewGuid();
 
-            // ContestViewModel contests = new ContestViewModel();
-            // contests.Items = new ContestModel[] { contest };
+            _context.Contests.Add(newContest);
 
-            // return new[] { contest };
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
         }
     }
 }

@@ -24,12 +24,27 @@ namespace Pintxos.Services
 
         public async Task<bool> AddContestAsync(ContestModel newContest)
         {
-            newContest.Id = Guid.NewGuid();
+            if (newContest.IsActive)
+            {
+                await MarkAllAsInactive();                
+            }
 
+            newContest.Id = Guid.NewGuid();
             _context.Contests.Add(newContest);
 
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
+        }
+
+        private async Task<bool> MarkAllAsInactive()
+        {
+            _context.Contests
+                .ToList()
+                .ForEach( x => x.IsActive = false );
+
+            var activeUpdate = await _context.SaveChangesAsync();
+
+            return activeUpdate == 1;
         }
     }
 }

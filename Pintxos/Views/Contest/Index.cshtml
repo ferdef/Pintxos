@@ -10,7 +10,7 @@
   <table class="table table-hover">
       <thead>
           <tr>
-              <td>&#x2714;</td>
+              <td>Is Active</td>
               <td>Date</td>
           </tr>
       </thead>
@@ -19,7 +19,7 @@
       {
           <tr>
               <td>
-                <input type="checkbox" class="done-checkbox">
+                <input type="checkbox" class="done-checkbox" checked="@item.IsActive">
               </td>
               <td>@item.ContestDate</td>
           </tr>

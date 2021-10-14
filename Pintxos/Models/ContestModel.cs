@@ -6,5 +6,6 @@ namespace Pintxos.Models
     {
         public Guid Id {get; set;}
         public DateTime ContestDate { get; set; }
+        public bool IsActive { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Pintxos.Models;
 
@@ -7,5 +8,6 @@ namespace Pintxos.Services
     {
         Task<ContestModel[]> GetContestsAsync();
         Task<bool> AddContestAsync(ContestModel newContest);
+        Task<bool> MarkAsActive(Guid id);
     }
 }

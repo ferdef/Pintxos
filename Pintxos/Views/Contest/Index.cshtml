@@ -12,6 +12,7 @@
           <tr>
               <td>Is Active</td>
               <td>Date</td>
+              <td>Actions</td>
           </tr>
       </thead>
 
@@ -22,6 +23,12 @@
                 <input type="checkbox" class="done-checkbox" checked="@item.IsActive">
               </td>
               <td>@item.ContestDate</td>
+              <td>
+                <form asp-action="MarkActive" method="POST">
+                  <button type="button" class="active-button">Activate</button>
+                  <input type="hidden" name="id" value="@item.Id">
+                </form>
+              </td>
           </tr>
       }
   </table>

@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,6 +40,22 @@ namespace Pintxos.Controllers
                 return BadRequest("Could not add Contest");
             }
 
+            return RedirectToAction("Index");
+        }
+
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> MarkActive(Guid id)
+        {
+            if (id == Guid.Empty)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var successful = await _pintxoService.MarkAsActive(id);
+            if(!successful)
+            {
+                return BadRequest("Could not activate contest");
+            }
             return RedirectToAction("Index");
         }
     }

@@ -23,5 +23,7 @@ jobs:
       run: dotnet build --no-restore Pintxos/Pintxos.csproj
     - name: Restore dependencies on Tests Project
       run: dotnet restore Pintxos.UnitTests/Pintxos.UnitTests.csproj
+    - name: Build Test Project
+      run: dotnet build --no-restore Pintxos.UnitTests/Pintxos.UnitTests.csproj
     - name: Test
       run: dotnet test --no-build --verbosity normal Pintxos.UnitTests/Pintxos.UnitTests.csproj

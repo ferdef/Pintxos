@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Pintxos.Data;
 using Pintxos.Models;
 
@@ -31,6 +32,23 @@ namespace Pintxos.Services
 
             newContest.Id = Guid.NewGuid();
             _context.Contests.Add(newContest);
+
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
+        }
+
+        public async Task<bool> MarkAsActive(Guid id)
+        {
+            var marked = await MarkAllAsInactive();
+            if (!marked) return false;
+
+            var item = await _context.Contests
+                .Where(x => x.Id == id)
+                .SingleOrDefaultAsync();
+
+            if (item == null) return false;
+
+            item.IsActive = true;
 
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;

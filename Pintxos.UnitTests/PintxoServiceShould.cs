@@ -37,16 +37,17 @@ namespace Pintxos.UnitTests
         }       
 
         [Fact]
-        public async Task ActivatingOneMarksOthersAsInactive()
+        public async Task CreateOneActiceMarksOthersAsInactive()
         {
-            var options = GetOptions("Test_MarkAsInactive");
+            var options = GetOptions("Test_CreateActive");
             using (var context = new ApplicationDbContext(options))
             {
                 var service = new PintxoService(context);
 
                 await service.AddContestAsync(new ContestModel
                 {
-                    ContestDate = DateTime.Today
+                    ContestDate = DateTime.Today,
+                    IsActive = true
                 });
                 await service.AddContestAsync(new ContestModel
                 {
@@ -64,8 +65,42 @@ namespace Pintxos.UnitTests
                 Assert.False(items[0].IsActive);
                 Assert.True(items[1].IsActive);
             }
-            
         }
+
+        [Fact]
+        public async Task MarkOneActiceMarksOthersAsInactive()
+        {
+            var options = GetOptions("Test_MarkAsActive");
+            using (var context = new ApplicationDbContext(options))
+            {
+                var service = new PintxoService(context);
+
+                await service.AddContestAsync(new ContestModel
+                {
+                    ContestDate = DateTime.Today,
+                    IsActive = false
+                });
+                await service.AddContestAsync(new ContestModel
+                {
+                    ContestDate = DateTime.Today,
+                    IsActive = true
+                });
+                var first = await context.Contests.FirstAsync();
+                var marked = service.MarkAsActive(first.Id);
+            }
+            using (var context = new ApplicationDbContext(options))
+            {
+                var itemsInDatabase = await context.Contests.CountAsync();
+                Assert.Equal(2, itemsInDatabase);
+                
+                var items = await context.Contests.ToListAsync();
+                
+                Assert.True(items[0].IsActive);
+                Assert.False(items[1].IsActive);
+            }
+        }
+
+
 
         DbContextOptions<ApplicationDbContext> GetOptions(string name)
         {

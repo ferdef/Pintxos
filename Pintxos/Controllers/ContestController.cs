@@ -34,8 +34,8 @@ namespace Pintxos.Controllers
                 return RedirectToAction("Index");
             }
 
-            var successful = await _pintxoService.AddContestAsync(newContest);
-            if (!successful)
+            var model = await _pintxoService.AddContestAsync(newContest);
+            if (model == null)
             {
                 return BadRequest("Could not add Contest");
             }

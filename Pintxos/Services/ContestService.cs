@@ -23,7 +23,7 @@ namespace Pintxos.Services
             return items;
         }
 
-        public async Task<bool> AddContestAsync(ContestModel newContest)
+        public async Task<ContestModel> AddContestAsync(ContestModel newContest)
         {
             if (newContest.IsActive)
             {
@@ -34,7 +34,7 @@ namespace Pintxos.Services
             _context.Contests.Add(newContest);
 
             var saveResult = await _context.SaveChangesAsync();
-            return saveResult == 1;
+            return saveResult == 1 ? newContest : null;
         }
 
         public async Task<bool> MarkContestAsActive(Guid id)

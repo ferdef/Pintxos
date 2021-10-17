@@ -37,7 +37,7 @@ namespace Pintxos.Services
             return saveResult == 1;
         }
 
-        public async Task<bool> MarkAsActive(Guid id)
+        public async Task<bool> MarkContestAsActive(Guid id)
         {
             var marked = await MarkAllAsInactive();
             if (!marked) return false;

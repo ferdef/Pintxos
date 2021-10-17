@@ -86,7 +86,7 @@ namespace Pintxos.UnitTests
                     IsActive = true
                 });
                 var first = await context.Contests.FirstAsync();
-                var marked = service.MarkAsActive(first.Id);
+                var marked = service.MarkContestAsActive(first.Id);
             }
             using (var context = new ApplicationDbContext(options))
             {

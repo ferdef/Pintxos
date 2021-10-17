@@ -8,6 +8,6 @@ namespace Pintxos.Services
     {
         Task<ContestModel[]> GetContestsAsync();
         Task<bool> AddContestAsync(ContestModel newContest);
-        Task<bool> MarkAsActive(Guid id);
+        Task<bool> MarkContestAsActive(Guid id);
     }
 }

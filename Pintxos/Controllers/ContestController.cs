@@ -51,7 +51,7 @@ namespace Pintxos.Controllers
                 return RedirectToAction("Index");
             }
 
-            var successful = await _pintxoService.MarkAsActive(id);
+            var successful = await _pintxoService.MarkContestAsActive(id);
             if(!successful)
             {
                 return BadRequest("Could not activate contest");

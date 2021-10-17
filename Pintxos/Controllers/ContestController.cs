@@ -9,14 +9,14 @@ namespace Pintxos.Controllers
 {
     public class ContestController : Controller
     {
-        private readonly IContestService _pintxoService;
+        private readonly IContestService _contestService;
         public ContestController(IContestService contestService)
         {
-            _pintxoService = contestService;
+            _contestService = contestService;
         }
         public async Task<IActionResult> Index()
         {
-            var contests = await _pintxoService.GetContestsAsync();
+            var contests = await _contestService.GetContestsAsync();
 
             var model = new ContestViewModel()
             {
@@ -34,7 +34,7 @@ namespace Pintxos.Controllers
                 return RedirectToAction("Index");
             }
 
-            var model = await _pintxoService.AddContestAsync(newContest);
+            var model = await _contestService.AddContestAsync(newContest);
             if (model == null)
             {
                 return BadRequest("Could not add Contest");
@@ -51,7 +51,7 @@ namespace Pintxos.Controllers
                 return RedirectToAction("Index");
             }
 
-            var successful = await _pintxoService.MarkContestAsActive(id);
+            var successful = await _contestService.MarkContestAsActive(id);
             if(!successful)
             {
                 return BadRequest("Could not activate contest");

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pintxos", "Pintxos\Pintxos.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pintxos.UnitTests", "Pintxos.UnitTests\Pintxos.UnitTests.csproj", "{EAF2D6F5-80F5-49E8-A77E-B8DA8AD3FC27}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pintxos.IntegrationTests", "Pintxos.IntegrationTests\Pintxos.IntegrationTests.csproj", "{2D4501C1-B6D1-4D48-8348-A2A755A0DE7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{EAF2D6F5-80F5-49E8-A77E-B8DA8AD3FC27}.Release|x64.Build.0 = Release|Any CPU
 		{EAF2D6F5-80F5-49E8-A77E-B8DA8AD3FC27}.Release|x86.ActiveCfg = Release|Any CPU
 		{EAF2D6F5-80F5-49E8-A77E-B8DA8AD3FC27}.Release|x86.Build.0 = Release|Any CPU
+		{2D4501C1-B6D1-4D48-8348-A2A755A0DE7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D4501C1-B6D1-4D48-8348-A2A755A0DE7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D4501C1-B6D1-4D48-8348-A2A755A0DE7E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2D4501C1-B6D1-4D48-8348-A2A755A0DE7E}.Debug|x64.Build.0 = Debug|Any CPU
+		{2D4501C1-B6D1-4D48-8348-A2A755A0DE7E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2D4501C1-B6D1-4D48-8348-A2A755A0DE7E}.Debug|x86.Build.0 = Debug|Any CPU
+		{2D4501C1-B6D1-4D48-8348-A2A755A0DE7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D4501C1-B6D1-4D48-8348-A2A755A0DE7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D4501C1-B6D1-4D48-8348-A2A755A0DE7E}.Release|x64.ActiveCfg = Release|Any CPU
+		{2D4501C1-B6D1-4D48-8348-A2A755A0DE7E}.Release|x64.Build.0 = Release|Any CPU
+		{2D4501C1-B6D1-4D48-8348-A2A755A0DE7E}.Release|x86.ActiveCfg = Release|Any CPU
+		{2D4501C1-B6D1-4D48-8348-A2A755A0DE7E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

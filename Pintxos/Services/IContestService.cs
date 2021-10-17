@@ -4,7 +4,7 @@ using Pintxos.Models;
 
 namespace Pintxos.Services 
 {
-    public interface IPintxoService
+    public interface IContestService
     {
         Task<ContestModel[]> GetContestsAsync();
         Task<bool> AddContestAsync(ContestModel newContest);

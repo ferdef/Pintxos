@@ -9,8 +9,8 @@ namespace Pintxos.Controllers
 {
     public class ContestController : Controller
     {
-        private readonly IPintxoService _pintxoService;
-        public ContestController(IPintxoService contestService)
+        private readonly IContestService _pintxoService;
+        public ContestController(IContestService contestService)
         {
             _pintxoService = contestService;
         }

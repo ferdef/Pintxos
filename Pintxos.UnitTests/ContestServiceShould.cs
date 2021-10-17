@@ -8,7 +8,7 @@ using Xunit;
 
 namespace Pintxos.UnitTests
 {
-    public class PintxoServiceShould
+    public class ContestServiceShould
     {
         [Fact]
         public async Task AddNewContest()
@@ -17,7 +17,7 @@ namespace Pintxos.UnitTests
 
             using (var context = new ApplicationDbContext(options))
             {
-                var service = new PintxoService(context);
+                var service = new ContestService(context);
 
                 await service.AddContestAsync(new ContestModel
                 {
@@ -42,7 +42,7 @@ namespace Pintxos.UnitTests
             var options = GetOptions("Test_CreateActive");
             using (var context = new ApplicationDbContext(options))
             {
-                var service = new PintxoService(context);
+                var service = new ContestService(context);
 
                 await service.AddContestAsync(new ContestModel
                 {
@@ -73,7 +73,7 @@ namespace Pintxos.UnitTests
             var options = GetOptions("Test_MarkAsActive");
             using (var context = new ApplicationDbContext(options))
             {
-                var service = new PintxoService(context);
+                var service = new ContestService(context);
 
                 await service.AddContestAsync(new ContestModel
                 {

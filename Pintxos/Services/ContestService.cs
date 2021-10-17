@@ -7,11 +7,11 @@ using Pintxos.Models;
 
 namespace Pintxos.Services
 {
-    public class PintxoService : IPintxoService
+    public class ContestService : IContestService
     {
         private readonly ApplicationDbContext _context;
 
-        public PintxoService(ApplicationDbContext context)
+        public ContestService(ApplicationDbContext context)
         {
             _context = context;
         }

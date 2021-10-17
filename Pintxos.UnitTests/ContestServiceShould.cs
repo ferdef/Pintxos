@@ -13,7 +13,7 @@ namespace Pintxos.UnitTests
         [Fact]
         public async Task AddNewContest()
         {
-            var options = GetOptions("Test_AddNewContest");
+            var options = ModelHelper.GetOptions("Test_AddNewContest");
 
             using (var context = new ApplicationDbContext(options))
             {
@@ -39,7 +39,7 @@ namespace Pintxos.UnitTests
         [Fact]
         public async Task CreateOneActiceMarksOthersAsInactive()
         {
-            var options = GetOptions("Test_CreateActive");
+            var options = ModelHelper.GetOptions("Test_CreateActive");
             using (var context = new ApplicationDbContext(options))
             {
                 var service = new ContestService(context);
@@ -70,7 +70,7 @@ namespace Pintxos.UnitTests
         [Fact]
         public async Task MarkOneActiceMarksOthersAsInactive()
         {
-            var options = GetOptions("Test_MarkAsActive");
+            var options = ModelHelper.GetOptions("Test_MarkAsActive");
             using (var context = new ApplicationDbContext(options))
             {
                 var service = new ContestService(context);
@@ -98,14 +98,6 @@ namespace Pintxos.UnitTests
                 Assert.True(items[0].IsActive);
                 Assert.False(items[1].IsActive);
             }
-        }
-
-
-
-        DbContextOptions<ApplicationDbContext> GetOptions(string name)
-        {
-            return new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(databaseName: name).Options;
         }
     }
 }

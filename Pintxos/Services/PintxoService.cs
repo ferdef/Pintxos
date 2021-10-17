@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Pintxos.Data;
 using Pintxos.Models;
@@ -14,14 +15,20 @@ namespace Pintxos.Services
             _context = context;
         }
         
-        public Task<bool> AddPintxoAsync(PintxoModel newPintxo)
+        public async Task<PintxoModel> AddPintxoAsync(PintxoModel newPintxo)
         {
-            throw new NotImplementedException();
+            newPintxo.Id = Guid.NewGuid();
+            _context.Pintxos.Add(newPintxo);
+
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1 ? newPintxo : null;
         }
 
-        public Task<PintxoModel> GetPintxosAsync()
+        public async Task<PintxoModel[]> GetPintxosAsync()
         {
-            throw new NotImplementedException();
+            var items = _context.Pintxos.ToArray();
+
+            return items;
         }
 
         public Task<bool> ScorePintxo(Guid id, int value)

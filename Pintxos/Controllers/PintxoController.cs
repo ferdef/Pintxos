@@ -1,10 +1,12 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pintxos.Models;
 using Pintxos.Services;
 
 namespace Pintxos.Controllers
 {
+    [Authorize]
     public class PintxoController : Controller
     {
         private readonly IPintxoService _pintxoService;

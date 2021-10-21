@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using Pintxos.Models;
@@ -7,6 +8,7 @@ using Pintxos.Services;
 
 namespace Pintxos.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class ContestController : Controller
     {
         private readonly IContestService _contestService;

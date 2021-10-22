@@ -20,7 +20,10 @@
       {
           <tr>
               <td>
-                <input type="checkbox" class="done-checkbox" checked="@item.IsActive">
+                @if (@item.IsActive)
+                {
+                  <p>&#10004;</p>
+                }
               </td>
               <td>@item.ContestDate</td>
               <td>

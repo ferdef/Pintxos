@@ -35,17 +35,17 @@ namespace Pintxos
             UserManager<IdentityUser> userManager)
         {
             var testAdmin = await userManager.Users
-                .Where(x => x.UserName == "admin@todo.local")
+                .Where(x => x.UserName == Constants.AdministratorDefaultAccount)
                 .SingleOrDefaultAsync();
 
             if (testAdmin != null) return;
 
             testAdmin = new IdentityUser
             {
-                UserName = "admin@todo.local",
-                Email = "admin@todo.local"
+                UserName = Constants.AdministratorDefaultAccount,
+                Email = Constants.AdministratorDefaultAccount
             };
-            await userManager.CreateAsync(testAdmin, "NotSecure123!!");
+            await userManager.CreateAsync(testAdmin, Constants.AdministratorDefaultPassword);
             await userManager.AddToRoleAsync(testAdmin, Constants.AdministratorRole);
         }
 
@@ -53,7 +53,7 @@ namespace Pintxos
             UserManager<IdentityUser> userManager)
         {
             var testAdmin = await userManager.Users
-                .Where(x => x.UserName == Constants.AdministratorRole)
+                .Where(x => x.UserName == Constants.AdministratorDefaultAccount)
                 .SingleOrDefaultAsync();
             var confirmed = await userManager.IsEmailConfirmedAsync(testAdmin);
             if (confirmed)

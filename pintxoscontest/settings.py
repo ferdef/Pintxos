@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'contests.apps.ContestsConfig',
     'pintxos.apps.PintxosConfig',
+    'wines.apps.WinesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

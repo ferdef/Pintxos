@@ -9,6 +9,7 @@ class Pintxo(models.Model):
     description = models.TextField()
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     contest = models.ForeignKey(Contest, on_delete=models.CASCADE)
+    voted_by = models.ManyToManyField(User, through='PintxoVote', related_name='voter')
 
     def __str__(self):
         return f"{self.name} - {self.creator.get_username()} - Contest:{self.contest}"

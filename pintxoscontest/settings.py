@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'families.apps.FamiliesConfig',
     'contests.apps.ContestsConfig',
     'pintxos.apps.PintxosConfig',
     'wines.apps.WinesConfig',

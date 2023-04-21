@@ -1,0 +1,15 @@
+@page "/Contests"
+@inject DBService Service
+
+<div>Contests</div>
+
+@foreach (Contest contest in contests)
+{
+    <div>@contest.Name</div>
+}
+
+@code {
+    List<Contest> contests => Service.GetContests();
+
+    //var users = Service.GetUsers();
+}

@@ -11,7 +11,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSqlite<PintxosContext>("Data Source=pintxos.db");
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddScoped<ContestState>();
+builder.Services.AddScoped<DBService>();
 
 var app = builder.Build();
 

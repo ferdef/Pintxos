@@ -1,15 +1,54 @@
 @page "/Contests"
 @inject DBService Service
 
-<div>Contests</div>
+<div class="container">
+    <div class="h1">Contests</div>
+    <hr>
+    <div class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Contest Name</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Contest contest in contests)
+            {
+                <tr>
+                    <td>@contest.Name</td>
+                    <td>@contest.Date</td>
+                </tr>
+            }
+        </tbody>
+        
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col h1 pt-5">
+            Register New Contest
+        </div>
+    </div>
+    <hr>
+    <EditForm class="row" Model=@newContest OnSubmit="ValidateData">
+        <div class="col-2">Contest Name</div>
+        <InputText class="col-2" @bind-Value=newContest.Name></InputText>
+        <div class="col-2">Date</div>
+        <InputDate class="col-2" @bind-Value=newContest.Date></InputDate>
+        <input type="submit" class="mx-3 col-2 btn btn-primary" value="Save"/>
+    </EditForm>
+</div>
 
-@foreach (Contest contest in contests)
-{
-    <div>@contest.Name</div>
-}
+
 
 @code {
-    List<Contest> contests => Service.GetContests();
+    private List<Contest> contests => Service.GetContests();
+    private Contest newContest = new();
 
     //var users = Service.GetUsers();
+
+    private async Task ValidateData(EditContext editContext)
+    {
+        Service.NewContest(newContest);
+    }
 }

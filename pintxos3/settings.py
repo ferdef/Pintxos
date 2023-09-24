@@ -85,6 +85,8 @@ DATABASES = {
     }
 }
 
+print(f"{getenv('DB_NAME')} {getenv('DB_USER')} {getenv('DB_PASSWORD')} {getenv('DB_HOST')}")
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

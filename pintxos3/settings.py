@@ -77,15 +77,13 @@ WSGI_APPLICATION = 'pintxos3.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': getenv('DB_NAME'),
-        'USER': getenv('DB_USER'),
-        'PASSWORD': getenv('DB_PASSWORD'),
+        'NAME': getenv('POSTGRES_NAME'),
+        'USER': getenv('POSTGRES_USER'),
+        'PASSWORD': getenv('POSTGRES_PASSWORD'),
         'HOST': getenv('DB_HOST'),
         'PORT': '',
     }
 }
-
-print(f"{getenv('DB_NAME')} {getenv('DB_USER')} {getenv('DB_PASSWORD')} {getenv('DB_HOST')}")
 
 
 # Password validation

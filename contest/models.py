@@ -24,15 +24,21 @@ class Contest(models.Model):
     contest_date = models.DateField("Contest Date")
 
     def __unicode__(self):
-        return "Contest on ".join(self.contest_date)
+        return f"Contest on {self.contest_date}"
+    
+    def __str__(self):
+        return f"Contest on {self.contest_date}"
 
 class Pintxo(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField
+    description = models.TextField(max_length=2048, blank=True, null=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     contest = models.ForeignKey(Contest, on_delete=models.CASCADE)
 
     def __unicode__(self):
+        return f"{self.name} by {self.owner.get_full_name()}"
+    
+    def __str__(self):
         return f"{self.name} by {self.owner.get_full_name()}"
 
 class Vote(models.Model):
@@ -43,4 +49,7 @@ class Vote(models.Model):
     voter = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __unicode__(self):
+        return f"{self.voter.get_full_name()} voted {self.taste_vote} - {self.presentation_vote} - {self.originality_vote}"
+    
+    def __str__(self):
         return f"{self.voter.get_full_name()} voted {self.taste_vote} - {self.presentation_vote} - {self.originality_vote}"

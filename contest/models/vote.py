@@ -43,3 +43,8 @@ class Vote(models.Model):
             vote['result'] = (vote['taste']*0.7) + (vote['presentation']*0.15) + (vote['originality']*0.15)
 
         return sorted(total_votes.items(), key=lambda x: (x[1]['result'], x[1]), reverse=True)
+
+    @classmethod
+    def clear_contest_votes(cls, contest):
+        votes = Vote.objects.filter(pintxo__contest=contest)
+        return votes.delete()

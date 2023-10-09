@@ -130,6 +130,46 @@ STATICFILES_DIRS = [path.join(BASE_DIR,'static'),]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{name} {levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "backupCount": 10,  # how many backup file to keep, 10 days
+            "maxBytes": 1024*1024*1,  # 1MB
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": path.join(BASE_DIR, "debug.log"),
+            "formatter": "verbose",
+        },
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+    },
+    "loggers": {
+        "": {
+            "handlers": ["file"],
+            "level": "DEBUG",
+            "propagate": True,
+        }
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "WARNING",
+    }
+}
+
 try:
     from pintxos3.local_settings import *
 except ImportError:

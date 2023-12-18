@@ -12,6 +12,11 @@ type config struct {
 	staticDir string
 }
 
+type application struct {
+	infoLog  *log.Logger
+	errorLog *log.Logger
+}
+
 func main() {
 	var cfg config
 
@@ -22,6 +27,11 @@ func main() {
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 
+	app := &application{
+		infoLog:  infoLog,
+		errorLog: errorLog,
+	}
+
 	mux := http.NewServeMux()
 
 	// Adding Statics
@@ -29,14 +39,20 @@ func main() {
 	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
 
 	// Adding landing page
-	mux.HandleFunc("/", home)
+	mux.HandleFunc("/", app.home)
 
 	// Adding remaining pages
-	mux.HandleFunc("/contests", contestsList)
-	mux.HandleFunc("/pintxos", pintxosList)
-	mux.HandleFunc("/votes", votesList)
+	mux.HandleFunc("/contests", app.contestsList)
+	mux.HandleFunc("/pintxos", app.pintxosList)
+	mux.HandleFunc("/votes", app.votesList)
+
+	srv := &http.Server{
+		Addr:     cfg.addr,
+		ErrorLog: errorLog,
+		Handler:  mux,
+	}
 
 	infoLog.Printf("Starting server on %s", cfg.addr)
-	err := http.ListenAndServe(cfg.addr, mux)
+	err := srv.ListenAndServe()
 	errorLog.Fatal(err)
 }

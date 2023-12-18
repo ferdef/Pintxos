@@ -32,25 +32,10 @@ func main() {
 		errorLog: errorLog,
 	}
 
-	mux := http.NewServeMux()
-
-	// Adding Statics
-	fileServer := http.FileServer(http.Dir("./ui/static/"))
-	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
-
-	// Adding landing page
-	mux.HandleFunc("/", app.home)
-
-	// Adding remaining pages
-	mux.HandleFunc("/contests", app.contestsList)
-	mux.HandleFunc("/pintxos", app.pintxosList)
-	mux.HandleFunc("/pintxos/create", app.pintxosCreate)
-	mux.HandleFunc("/votes", app.votesList)
-
 	srv := &http.Server{
 		Addr:     cfg.addr,
 		ErrorLog: errorLog,
-		Handler:  mux,
+		Handler:  app.routes(),
 	}
 
 	infoLog.Printf("Starting server on %s", cfg.addr)

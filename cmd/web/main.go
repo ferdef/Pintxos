@@ -1,11 +1,15 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"net/http"
 )
 
 func main() {
+	addr := flag.String("addr", ":4001", "HTTP network address")
+	flag.Parse()
+
 	mux := http.NewServeMux()
 
 	// Adding Statics
@@ -20,7 +24,7 @@ func main() {
 	mux.HandleFunc("/pintxos", pintxosList)
 	mux.HandleFunc("/votes", votesList)
 
-	log.Print("Starting server on :4001")
-	err := http.ListenAndServe(":4001", mux)
+	log.Printf("Starting server on %s", *addr)
+	err := http.ListenAndServe(*addr, mux)
 	log.Fatal(err)
 }

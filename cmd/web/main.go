@@ -15,6 +15,11 @@ func main() {
 	// Adding landing page
 	mux.HandleFunc("/", home)
 
+	// Adding remaining pages
+	mux.HandleFunc("/contests", contestsList)
+	mux.HandleFunc("/pintxos", pintxosList)
+	mux.HandleFunc("/votes", votesList)
+
 	err := http.ListenAndServe(":4001", mux)
 	log.Fatal(err)
 }

@@ -44,6 +44,7 @@ func main() {
 	// Adding remaining pages
 	mux.HandleFunc("/contests", app.contestsList)
 	mux.HandleFunc("/pintxos", app.pintxosList)
+	mux.HandleFunc("/pintxos/create", app.pintxosCreate)
 	mux.HandleFunc("/votes", app.votesList)
 
 	srv := &http.Server{

@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"os"
 
+	"pintxos.f3rd3f.com/internal/models"
+
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -19,6 +21,7 @@ type config struct {
 type application struct {
 	infoLog  *log.Logger
 	errorLog *log.Logger
+	contests *models.ContestModel
 }
 
 func main() {
@@ -42,6 +45,7 @@ func main() {
 	app := &application{
 		infoLog:  infoLog,
 		errorLog: errorLog,
+		contests: &models.ContestModel{DB: db},
 	}
 
 	srv := &http.Server{

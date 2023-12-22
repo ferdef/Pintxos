@@ -53,5 +53,32 @@ func (m *ContestModel) Get(id int) (*Contest, error) {
 }
 
 func (m *ContestModel) Latest() ([]*Contest, error) {
-	return nil, nil
+	stmt := `SELECT id, contest_date, active, created FROM contest
+			 ORDER BY id DESC LIMIT 10`
+
+	rows, err := m.DB.Query(stmt)
+	if err != nil {
+		return nil, err
+	}
+
+	defer rows.Close()
+
+	contests := []*Contest{}
+
+	for rows.Next() {
+		c := &Contest{}
+
+		err = rows.Scan(&c.ID, &c.ContestDate, &c.Active, &c.Created)
+		if err != nil {
+			return nil, err
+		}
+
+		contests = append(contests, c)
+	}
+
+	if err = rows.Err(); err != nil {
+		return nil, err
+	}
+
+	return contests, nil
 }

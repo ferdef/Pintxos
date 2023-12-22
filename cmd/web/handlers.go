@@ -37,7 +37,15 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) contestsList(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Listing current contests"))
+	contests, err := app.contests.Latest()
+	if err != nil {
+		app.serverError(w, err)
+		return
+	}
+
+	for _, contest := range contests {
+		fmt.Fprintf(w, "%v+", contest)
+	}
 }
 
 func (app *application) contestsCreate(w http.ResponseWriter, r *http.Request) {

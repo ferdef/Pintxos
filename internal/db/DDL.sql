@@ -1,6 +1,6 @@
 CREATE TABLE contest (
     id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    contest_date DATETIME NOT NULL,
+    contest_date DATE NOT NULL,
     active BOOLEAN NOT NULL DEFAULT false,
     created DATETIME NOT NULL
 );

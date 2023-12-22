@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strconv"
 	"text/template"
+	"time"
 )
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
@@ -34,6 +35,34 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 
 func (app *application) contestsList(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Listing current contests"))
+}
+
+func (app *application) contestsCreate(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		w.Header().Set("Allow", http.MethodPost)
+		app.clientError(w, http.StatusMethodNotAllowed)
+		return
+	}
+
+	contest_date := time.Now()
+	active := true
+
+	id, err := app.contests.Insert(contest_date, active)
+	if err != nil {
+		app.serverError(w, err)
+		return
+	}
+
+	http.Redirect(w, r, fmt.Sprintf("/contests/view?id=%d", id), http.StatusSeeOther)
+}
+
+func (app *application) contestsView(w http.ResponseWriter, r *http.Request) {
+	id, err := strconv.Atoi(r.URL.Query().Get("id"))
+	if err != nil || id < 0 {
+		app.notFound(w)
+		return
+	}
+	fmt.Fprintf(w, "Display a specific contest with ID %d...", id)
 }
 
 func (app *application) pintxosList(w http.ResponseWriter, r *http.Request) {

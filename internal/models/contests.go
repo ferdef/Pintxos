@@ -2,12 +2,13 @@ package models
 
 import (
 	"database/sql"
+	"errors"
 	"time"
 )
 
 type Contest struct {
 	ID          int
-	CreatedDate time.Time
+	ContestDate time.Time
 	Active      bool
 	Created     time.Time
 }
@@ -34,7 +35,21 @@ func (m *ContestModel) Insert(contest_date time.Time, active bool) (int, error) 
 }
 
 func (m *ContestModel) Get(id int) (*Contest, error) {
-	return nil, nil
+	stmt := `SELECT id, contest_date, active, created FROM contest
+			 WHERE id = ?`
+
+	c := &Contest{}
+
+	err := m.DB.QueryRow(stmt, id).Scan(&c.ID, &c.ContestDate, &c.Active, &c.Created)
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return nil, ErrNoRecord
+		} else {
+			return nil, err
+		}
+	}
+
+	return c, nil
 }
 
 func (m *ContestModel) Latest() ([]*Contest, error) {

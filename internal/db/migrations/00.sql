@@ -1,0 +1,4 @@
+CREATE TABLE migrations (
+    id INTEGER NOT NULL PRIMARY KEY,
+    applied DATETIME NOT NULL
+);

@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"text/template"
 
 	"pintxos.f3rd3f.com/internal/models"
 
@@ -19,10 +20,11 @@ type config struct {
 }
 
 type application struct {
-	infoLog  *log.Logger
-	errorLog *log.Logger
-	contests *models.ContestModel
-	pintxos  *models.PintxoModel
+	infoLog       *log.Logger
+	errorLog      *log.Logger
+	templateCache map[string]*template.Template
+	contests      *models.ContestModel
+	pintxos       *models.PintxoModel
 }
 
 func main() {
@@ -43,11 +45,17 @@ func main() {
 
 	defer db.Close()
 
+	templateCache, err := newTemplateCache()
+	if err != nil {
+		errorLog.Fatal(err)
+	}
+
 	app := &application{
-		infoLog:  infoLog,
-		errorLog: errorLog,
-		contests: &models.ContestModel{DB: db},
-		pintxos:  &models.PintxoModel{DB: db},
+		infoLog:       infoLog,
+		errorLog:      errorLog,
+		templateCache: templateCache,
+		contests:      &models.ContestModel{DB: db},
+		pintxos:       &models.PintxoModel{DB: db},
 	}
 
 	srv := &http.Server{

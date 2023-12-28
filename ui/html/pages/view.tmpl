@@ -1,0 +1,13 @@
+{{define "title"}}Contest #{{.Contest.ID}}{{end}}
+
+{{define "main"}}
+    <div class='snippet'>
+        <div class='metadata'>
+            <span>#{{.Contest.ID}}</span>
+        </div>
+        <div class='metadata'>
+            <time>Contest Date {{.Contest.ContestDate}}</time>
+            <time>Created: {{.Contest.Created}}</time>
+        </div>
+    </div>
+{{end}}

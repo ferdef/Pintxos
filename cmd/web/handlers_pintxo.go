@@ -71,7 +71,7 @@ func (app *application) pintxosView(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data := &templatePintxoData{
+	data := &templateData{
 		Pintxo: pintxo,
 	}
 

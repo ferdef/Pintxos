@@ -1,5 +1,43 @@
 {{define "title"}}Home{{end}}
+
 {{define "main"}}
+    <h2>Latest Contests</h2>
+    {{if .Contests}}
+    <table>
+        <tr>
+            <th>Contest Date</th>
+            <th>Active?</th>
+            <th>ID</th>
+        </tr>
+        {{range .Contests}}
+        <tr>
+            <td><a href='/contests/view?id={{.ID}}'>{{.ContestDate}}</a></td>
+            <td>{{.Active}}</td>
+            <td>{{.ID}}</td>
+        </tr>
+        {{end}}
+    </table>
+    {{else}}
+        <p>There's nothing to see here... yet!</p>
+    {{end}}
+    <h2></h2>
     <h2>Latest Pintxos</h2>
-    <p>There's nothing to see here yet!</p>
+    {{if .Pintxos}}
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>ID</th>
+        </tr>
+        {{range .Pintxos}}
+        <tr>
+            <td><a href='/pintxos/view?id={{.ID}}'>{{.Title}}</a></td>
+            <td>{{.Descr}}</td>
+            <td>{{.ID}}</td>
+        </tr>
+        {{end}}
+    </table>
+    {{else}}
+        <p>There's nothing to see here... yet!</p>
+    {{end}}
 {{end}}

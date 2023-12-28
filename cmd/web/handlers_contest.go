@@ -62,7 +62,7 @@ func (app *application) contestsView(w http.ResponseWriter, r *http.Request) {
 	files := []string{
 		"./ui/html/base.tmpl",
 		"./ui/html/partials/nav.tmpl",
-		"./ui/html/pages/content_view.tmpl",
+		"./ui/html/pages/contest_view.tmpl",
 	}
 
 	ts, err := template.ParseFiles(files...)
@@ -71,7 +71,7 @@ func (app *application) contestsView(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data := &templateContestData{
+	data := &templateData{
 		Contest: contest,
 	}
 

@@ -48,7 +48,7 @@ func (app *application) pintxosView(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pintxo, err := app.pintxos.Get(id)
-	fmt.Printf("%v", pintxo)
+
 	if err != nil {
 		if errors.Is(err, models.ErrNoRecord) {
 			app.notFound(w)

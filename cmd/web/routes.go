@@ -16,6 +16,7 @@ func (app *application) routes() *http.ServeMux {
 	mux.HandleFunc("/contests/view", app.contestsView)
 	mux.HandleFunc("/pintxos", app.pintxosList)
 	mux.HandleFunc("/pintxos/create", app.pintxosCreate)
+	mux.HandleFunc("/pintxos/view", app.pintxosView)
 	mux.HandleFunc("/votes", app.votesList)
 
 	return mux

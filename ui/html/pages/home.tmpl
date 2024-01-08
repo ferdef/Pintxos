@@ -11,7 +11,7 @@
         </tr>
         {{range .Contests}}
         <tr>
-            <td><a href='/contests/view?id={{.ID}}'>{{humanDate .ContestDate}}</a></td>
+            <td><a href='/contests/view?id={{.ID}}'>{{.ContestDate | humanDate}}</a></td>
             <td>{{.Active}}</td>
             <td>{{.ID}}</td>
         </tr>

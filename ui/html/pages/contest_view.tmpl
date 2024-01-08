@@ -7,8 +7,8 @@
             <span>#{{.ID}}</span>
         </div>
         <div class='metadata'>
-            <time>Contest Date {{.ContestDate}}</time>
-            <time>Created: {{.Created}}</time>
+            <time>Contest Date {{.ContestDate | humanDate}}</time>
+            <time>Created: {{.Created | humanDate}}</time>
         </div>
     </div>
     {{end}}

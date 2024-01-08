@@ -3,7 +3,7 @@ package main
 import "net/http"
 
 // The routes() method returns a servemux containing our application routes.
-func (app *application) routes() *http.ServeMux {
+func (app *application) routes() http.Handler {
 	mux := http.NewServeMux()
 
 	fileServer := http.FileServer(http.Dir("./ui/static/"))
@@ -19,5 +19,5 @@ func (app *application) routes() *http.ServeMux {
 	mux.HandleFunc("/pintxos/view", app.pintxosView)
 	mux.HandleFunc("/votes", app.votesList)
 
-	return mux
+	return secureHeaders(mux)
 }

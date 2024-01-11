@@ -1,6 +1,10 @@
 package main
 
-import "net/http"
+import (
+	"net/http"
+
+	"github.com/justinas/alice"
+)
 
 // The routes() method returns a servemux containing our application routes.
 func (app *application) routes() http.Handler {
@@ -19,5 +23,7 @@ func (app *application) routes() http.Handler {
 	mux.HandleFunc("/pintxos/view", app.pintxosView)
 	mux.HandleFunc("/votes", app.votesList)
 
-	return app.recoverPanic(app.logRequest(secureHeaders(mux)))
+	standard := alice.New(app.recoverPanic, app.logRequest, secureHeaders)
+	
+	return standard.Then(mux)
 }

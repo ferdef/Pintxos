@@ -30,9 +30,10 @@ func (app *application) pintxosView(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	app.render(w, http.StatusOK, "pintxo_view.tmpl", &templateData{
-		Pintxo: pintxo,
-	})
+	data := app.newTemplateData(r)
+	data.Pintxo = pintxo
+
+	app.render(w, http.StatusOK, "pintxo_view.tmpl", data)
 }
 
 func (app *application) pintxosList(w http.ResponseWriter, r *http.Request) {
@@ -48,7 +49,9 @@ func (app *application) pintxosList(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) pintxosCreate(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Display the form for create a new pintxo..."))
+	data := app.newTemplateData(r)
+
+	app.render(w, http.StatusOK, "pintxo_create.tmpl", data)
 }
 
 func (app *application) pintxosCreatePost(w http.ResponseWriter, r *http.Request) {

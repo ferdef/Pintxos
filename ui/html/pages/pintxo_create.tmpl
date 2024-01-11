@@ -1,0 +1,17 @@
+{{define "title"}}Create a New Pintxo{{end}}
+
+{{define "main"}}
+<form action="/pintxos/create" method="POST">
+    <div>
+        <label>Title:</label>
+        <input type="text" name="title">
+    </div>
+    <div>
+        <label>Description:</label>
+        <textarea name="description"></textarea>
+    </div>
+    <div>
+        <button type="submit">Create Pintxo</button>
+    </div>
+</form>
+{{end}}

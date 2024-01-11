@@ -17,8 +17,9 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	app.render(w, http.StatusOK, "home.tmpl", &templateData{
-		Contests: contests,
-		Pintxos:  pintxos,
-	})
+	data := app.newTemplateData(r)
+	data.Contests = contests
+	data.Pintxos = pintxos
+
+	app.render(w, http.StatusOK, "home.tmpl", data)
 }

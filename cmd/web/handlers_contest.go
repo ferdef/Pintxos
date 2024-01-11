@@ -30,9 +30,10 @@ func (app *application) contestsView(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	app.render(w, http.StatusOK, "contest_view.tmpl", &templateData{
-		Contest: contest,
-	})
+	data := app.newTemplateData(r)
+	data.Contest = contest
+
+	app.render(w, http.StatusOK, "contest_view.tmpl", data)
 }
 
 func (app *application) contestsList(w http.ResponseWriter, r *http.Request) {
@@ -48,7 +49,9 @@ func (app *application) contestsList(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) contestsCreate(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Display the form for create a new contest..."))
+	data := app.newTemplateData(r)
+
+	app.render(w, http.StatusOK, "contest_create.tmpl", data)
 }
 
 func (app *application) contestsCreatePost(w http.ResponseWriter, r *http.Request) {

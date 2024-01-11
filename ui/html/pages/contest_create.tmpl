@@ -1,0 +1,17 @@
+{{define "title"}}Create a New Contest{{end}}
+
+{{define "main"}}
+<form action="/contests/create" method="POST">
+    <div>
+        <label>Contest Date:</label>
+        <input type="date" name="contestdate">
+    </div>
+    <div>
+        <label>Active:</label>
+        <input type="checkbox" name="active">
+    </div>
+    <div>
+        <button type="submit">Create Contest</button>
+    </div>
+</form>
+{{end}}

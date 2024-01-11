@@ -55,8 +55,21 @@ func (app *application) contestsCreate(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) contestsCreatePost(w http.ResponseWriter, r *http.Request) {
-	contest_date := time.Now()
-	active := true
+	err := r.ParseForm()
+	if err != nil {
+		app.clientError(w, http.StatusBadRequest)
+		return
+	}
+
+	str_contest_date := r.PostForm.Get("contest_date")
+	contest_date, err := time.Parse("2006-01-02", str_contest_date)
+	if err != nil {
+		app.clientError(w, http.StatusBadRequest)
+		return
+	}
+
+	str_active := r.PostForm.Get("active")
+	active := str_active == "on"
 
 	id, err := app.contests.Insert(contest_date, active)
 	if err != nil {

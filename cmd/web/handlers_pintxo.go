@@ -55,8 +55,14 @@ func (app *application) pintxosCreate(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) pintxosCreatePost(w http.ResponseWriter, r *http.Request) {
-	title := "New title"
-	descr := "New Description"
+	err := r.ParseForm()
+	if err != nil {
+		app.clientError(w, http.StatusBadRequest)
+		return
+	}
+
+	title := r.PostForm.Get("title")
+	descr := r.PostForm.Get("description")
 
 	id, err := app.pintxos.Insert(title, descr)
 	if err != nil {
@@ -64,5 +70,5 @@ func (app *application) pintxosCreatePost(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	http.Redirect(w, r, fmt.Sprintf("/pintxos/view?%d", id), http.StatusSeeOther)
+	http.Redirect(w, r, fmt.Sprintf("/pintxos/view/%d", id), http.StatusSeeOther)
 }

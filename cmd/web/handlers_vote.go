@@ -4,10 +4,14 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+
+	"github.com/julienschmidt/httprouter"
 )
 
 func (app *application) votesList(w http.ResponseWriter, r *http.Request) {
-	contest, err := strconv.Atoi(r.URL.Query().Get("contest"))
+	params := httprouter.ParamsFromContext(r.Context())
+
+	contest, err := strconv.Atoi(params.ByName("contest"))
 	if err != nil || contest < 0 {
 		app.notFound(w)
 		return

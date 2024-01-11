@@ -11,7 +11,7 @@
         </tr>
         {{range .Contests}}
         <tr>
-            <td><a href='/contests/view?id={{.ID}}'>{{.ContestDate | humanDate}}</a></td>
+            <td><a href="/contests/view/{{.ID}}">{{.ContestDate | humanDate}}</a></td>
             <td>{{.Active}}</td>
             <td>{{.ID}}</td>
         </tr>
@@ -31,7 +31,7 @@
         </tr>
         {{range .Pintxos}}
         <tr>
-            <td><a href='/pintxos/view?id={{.ID}}'>{{.Title}}</a></td>
+            <td><a href="/pintxos/view/{{.ID}}">{{.Title}}</a></td>
             <td>{{.Descr}}</td>
             <td>{{.ID}}</td>
         </tr>

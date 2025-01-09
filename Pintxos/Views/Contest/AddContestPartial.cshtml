@@ -1,0 +1,8 @@
+@model ContestModel
+
+<form asp-action="AddContest" method="POST">
+    <label asp-for="ContestDate">Add a new contest:</label>
+    <div><input type="date" value="@DateTime.Today" asp-for="ContestDate"></div>
+    <div><label asp-for="ContestDate">Is Active?</label><input type="checkbox" asp-for="IsActive"></div>
+    <div><button type="submit">Add</button></div>
+</form>

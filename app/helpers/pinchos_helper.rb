@@ -1,0 +1,2 @@
+module PinchosHelper
+end

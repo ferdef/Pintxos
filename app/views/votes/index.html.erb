@@ -1,0 +1,30 @@
+<header class="intro-header">
+  <div class="container">
+    <div class="intro-message">
+      <h1>Votaciones</h1>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>Usuario</th>
+      <th>Pincho</th>
+      <th>Voto</th>
+    </tr>
+  
+    <% @votes.each do |vote| %>
+      <tr>
+        <td><%= vote.user.name %></td>
+        <td><%= vote.pincho.name %></td>
+        <td><%= vote.value %></td>
+        <td><%= link_to 'Mostrar', vote_path(vote) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="container" align="center">
+  <%= link_to 'Inicio', root_path, class: "btn btn-secondary btn-lg" %>
+</div>

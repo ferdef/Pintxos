@@ -1,0 +1,42 @@
+@model ContestViewModel
+
+@{
+    ViewData["Title"] = "Contests";
+}
+
+<div class="panel panel-default todo-panel">
+  <div class="panel-heading">@ViewData["Title"]</div>
+
+  <table class="table table-hover">
+      <thead>
+          <tr>
+              <td>Is Active</td>
+              <td>Date</td>
+              <td>Actions</td>
+          </tr>
+      </thead>
+
+      @foreach (var item in Model.Items)
+      {
+          <tr>
+              <td>
+                @if (@item.IsActive)
+                {
+                  <p>&#10004;</p>
+                }
+              </td>
+              <td>@item.ContestDate</td>
+              <td>
+                <form asp-action="MarkActive" method="POST">
+                  <button type="button" class="active-button">Activate</button>
+                  <input type="hidden" name="id" value="@item.Id">
+                </form>
+              </td>
+          </tr>
+      }
+  </table>
+
+  <div class="panel-footer add-item-form">
+    @await Html.PartialAsync("AddContestPartial", new ContestModel())
+  </div>
+</div>

@@ -1,0 +1,16 @@
+@page "/Pintxos"
+@inject DBService Service
+
+<div>Contests</div>
+
+@foreach (Pintxo pintxo in pintxos)
+{
+    <div>@pintxo.Name</div>
+    <div>@pintxo.Description</div>
+}
+
+@code {
+    List<Pintxo> pintxos => Service.GetPintxos();
+
+    //var users = Service.GetUsers();
+}

@@ -1,0 +1,9 @@
+{% if pintxos_list %}
+    <ul>
+    {% for pintxo in pintxos_list %}
+        <li><a href="/contest/pintxo/{{ pintxo.id }}/">{{ pintxo.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No pintxos are available.</p>
+{% endif %}

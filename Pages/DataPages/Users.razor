@@ -1,0 +1,18 @@
+@page "/Users"
+@inject DBService Service
+
+<div>Users</div>
+
+@TestVar
+
+@foreach (User user in users)
+{
+    <div>@user.Fullname</div>
+}
+
+@code {
+    string TestVar => Service.Test;
+    List<User> users => Service.GetUsers();
+
+    //var users = Service.GetUsers();
+}
